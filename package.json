@@ -10,11 +10,16 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@types/react-native-vector-icons": "^6.4.10",
     "expo": "~43.0.2",
     "expo-status-bar": "~1.1.0",
+    "fontisto": "^3.0.4",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
+    "react-native-dynamic-vector-icons": "^1.1.6",
+    "react-native-icons": "^0.7.1",
+    "react-native-vector-icons": "^9.0.0",
     "react-native-web": "0.17.1"
   },
   "devDependencies": {
