@@ -14,8 +14,9 @@ function Navigation() {
                    headerShown: false
                }} />
                <Stack.Screen name="Room" component={MeetingRoom} options={{title: 'Start a meeting', headerStyle: {
-                   backgroundColor: '#1c1c1c'
-               }, headerTintColor: "white"
+                   backgroundColor: '#1c1c1c',
+                   shadowOpacity: 1,
+               },   headerTintColor: "white",
                }} />
            </Stack.Navigator>
        </NavigationContainer>
