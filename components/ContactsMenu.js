@@ -1,22 +1,56 @@
 import React from 'react'
-import { View, Text, StyleSheet} from 'react-native'
+import { View, Text, StyleSheet, Image } from 'react-native'
 import AntDesign from 'react-native-vector-icons/AntDesign'
+
+const contactsMenuButton = [
+    {
+        type: 'starred',
+        name: 'Starred'
+    },
+    {
+        type: 'contact',
+        name: 'Roohan',
+        photo: require('../assets/favicon.png')
+    },
+    {
+        type: 'contact',
+        name: 'AsteriodGamer96',
+        photo: require('../assets/favicon.png')
+    },
+    {
+        type: 'contact',
+        name: 'AryanDameer',
+        photo: require('../assets/favicon.png')
+    },
+    {
+        type: 'contact',
+        name: 'Atif Usmani',
+        photo: require('../assets/favicon.png'),
+    }
+]
 
 function ContactsMenu() {
     return (
-            <View style={styles.container}>
-                {/* Contact container */}
-                <View style={styles.row}>
+        <View style={styles.container}>
+            {/* Contact container */}
+            {contactsMenuButton.map((contact, index) =>
+                <View key={index} style={styles.row}>
                     {/* Image */}
-                    <View style={styles.starredIcon}>
-                        <AntDesign name="star" size={30} color="#efefef" />
-                    </View>
+                    {contact.type == "starred" ? (
+                        <View style={styles.starredIcon}>
+                            <AntDesign name="star" size={30} color="#efefef" />
+                        </View>) :
+                        (
+                            <Image source={contact.photo} style={styles.image} />
+                        )
+                    }
                     {/* Text */}
-                    <View>
-                        <Text style={styles.text}>Starred</Text>
-                    </View>
+                    <Text style={styles.text}>
+                        {contact.name}
+                    </Text>
                 </View>
-            </View>
+            )}
+        </View>
     )
 }
 
@@ -42,5 +76,11 @@ const styles = StyleSheet.create({
     text: {
         color: "white",
         paddingLeft: 15,
+        fontSize: 18,
+    },
+    image: {
+        width: 55,
+        height: 55,
+        borderRadius: 20,
     }
 })

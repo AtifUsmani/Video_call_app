@@ -23,15 +23,19 @@ const items = [
         id: 4,
         name: 'upload',
         title: 'Share Screen',
-    }
+    },
 ]
 
-function MenuButtons() {
+function MenuButtons( {navigation} ) {
+    const openMeeting = () => {
+        navigation.navigate("Room")
+    }
     return (
             <View style={styles.container}>
                 {items.map((item, index) => 
                     <View key={index} style={styles.buttonContainer}>
                         <TouchableOpacity 
+                        onPress={()=>openMeeting()}
                         style={{
                             ...styles.button,
                             backgroundColor: item.customColor ? item.customColor : "#0470DC" // Use customColor only if it exists. If it does not exist then use "#0470DC".
