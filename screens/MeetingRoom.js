@@ -1,42 +1,28 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { View, Text, StyleSheet, TextInput } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import StartMeeting from '../components/StartMeeting'
+import { io } from 'socket.io-client'
 
 function MeetingRoom() {
     const [name, setName] = useState()
     const [roomId, setRoomId] = useState()
 
+    useEffect(() => {
+        const API_URl = "http://192.168.29.253:3001/"
+        socket = io(`${API_URl}`);
+        console.log("Hello World")
+        socket.on('connection', () => console.log("connected"))
+    }, [])
+
     return (
         <View style={styles.container}>
-            <View style={styles.startMeetingContainer}>
-                <View style={styles.info}>
-                    <TextInput
-                        style={styles.textInput}
-                        value={name}
-                        placeholder="Enter Name"
-                        placeholderTextColor="#767476"
-                        onChangeText={text => setName(text)}
-                    />
-                </View>
-                <View style={styles.info}>
-                    <TextInput
-                            style={styles.textInput}
-                            value={roomId}
-                            placeholder="Enter Room ID"
-                            placeholderTextColor="#767476"
-                            onChangeText={text => setRoomId(text)}
-                        />
-                </View>
-                <View style={{ alignItems: 'center' }}>
-                    <TouchableOpacity
-                        onPress={() =>{}}
-                        style={styles.startMeetingButton}
-                    >
-                        <Text style={{ color: "white", fontWeight: "bold" }}>
-                            Start Meeting
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
+            <StartMeeting
+                name={name}
+                setName={setName}
+                roomId={roomId}
+                setRoomId={setRoomId}
+            />
         </View>
     )
 }
@@ -47,29 +33,5 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: "#1c1c1c",
         flex: 1,
-    },
-    info: {
-        width: "100%",
-        backgroundColor: "#373538",
-        height: 50,
-        borderTopWidth: 1,
-        borderBottomWidth: 1,
-        borderColor: "#484648",
-        padding: 12,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    textInput: {
-        color: "white",
-        fontSize: 18,
-    },
-    startMeetingButton: {
-        width: 350,
-        marginTop: 20,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#0470DC",
-        height: 50,
-        borderRadius: 15,
     }
 })
